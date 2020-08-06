@@ -1,0 +1,27 @@
+<router-outlet></router-outlet>
+<div id="mainRowList" class="row">
+    <div class="col-md-12 text-center mb-3">
+        <h3>Pokemon Cards</h3>
+        <div class="row d-flex-center">
+            <div class="col-md-4">
+                <input type="text" placeholder="buscar pokemon" class="input-form" [(ngModel)]="searchInput">
+            </div>
+        </div>
+        <hr class="hr-color">
+    </div>
+    <ng-container *ngFor="let objPoke of cardsPokemon | searchByName:searchInput">
+        <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-3 text-center">
+            <div [routerLink]="['details', objPoke.id]" (click)="activeDisplayNone()" class="card-main">
+                <img src="{{objPoke.imageUrl}}" alt="image of pokemon {{objPoke.name}}" class="img-card-main">
+                <div class="card-details-main">
+                    <h3 class="f-size-1-5em-600">{{objPoke.name}}</h3>
+                    <h3 class="f-size-14-300">{{objPoke.id}} -
+                        <ng-container *ngFor="let type of objPoke.types">
+                            {{type}}
+                        </ng-container>
+                    </h3>
+                </div>
+            </div>
+        </div>
+    </ng-container>
+</div>

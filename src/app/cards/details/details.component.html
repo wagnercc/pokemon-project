@@ -1,0 +1,35 @@
+<div class="row p-absolute">
+    <div class="col-md-12">
+        <h3 (click)="backCards()" class="back-cards">←</h3>
+    </div>
+    <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 text-center">
+        <div class="disp-grid-50-50">
+            <ng-container *ngIf="objPokemon != undefined">
+                <img src="{{objPokemon.imageUrlHiRes}}" alt="image of pokemon {{objPokemon.name}}" class="img-card">
+                <div class="desc-card">
+                    <h3 class="f-size-4em-600">{{objPokemon.name}}</h3>
+                    <h4 class="f-size-17-300">{{objPokemon.id}} -
+                        <ng-container *ngFor="let type of objPokemon.types">
+                            {{type}}
+                        </ng-container>
+                    </h4>
+                    <hr class="hr-color">
+                    <ng-container *ngFor="let attacks of objPokemon.attacks">
+                        <h5 class="f-size-17-300">Ataque <b class="attack-bold">{{attacks.name}}</b></h5>
+                        <h5 class="f-size-15-300">Dano <b class="damage-bold">{{attacks.damage}}</b></h5>
+                        <h5 class="f-size-15-300">Custo <b class="cost-bold">{{attacks.convertedEnergyCost}}</b></h5>
+                        <h6 class="f-size-14-300" *ngIf="attacks.text != ''">{{attacks.text}}</h6>
+                    </ng-container>
+                    <hr class="hr-color">
+                    <ng-container *ngFor="let resistance of objPokemon.resistances">
+                        <h6 class="f-size-14-300">Resistencia <b class="cost-bold">{{resistance.type}}</b></h6>
+                    </ng-container>
+                    <ng-container *ngFor="let weakness of objPokemon.weaknesses">
+                        <h6 class="f-size-14-300">Fraqueza <b class="damage-bold">{{weakness.type}}</b></h6>
+                    </ng-container>
+                </div>
+
+            </ng-container>
+        </div>
+    </div>
+</div>
